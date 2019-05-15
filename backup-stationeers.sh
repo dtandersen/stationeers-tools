@@ -1,17 +1,16 @@
 #!/bin/bash -x
 if [ "$1" == "" ]; then
-  echo Specify save
+  echo Usage: backup-stationeers.sh [save]
   exit
 fi
+source /etc/stationeers/stationeers.conf
 srcon notice "Saving world..."
 srcon save "$1"
-sleep 10
+sleep $SAVE_DELAY
 SAVE=$1
 BASE=/efs/stationeers/saves
-BACKUP_BASE=/efs/stationeers/backups
-BACKUP_DIR="$BACKUP_BASE/$SAVE"
-SAVE_DIR="$BASE/$SAVE"
+BACKUP_DIR2="$BACKUP_DIR/$SAVE"
 DTE=`date +"%Y%m%d-%H%M"`
 BACKUP_NAME="$SAVE-$DTE.zip"
-mkdir -p "$BACKUP_DIR"
-7za a "$BACKUP_DIR/$BACKUP_NAME" "$SAVE_DIR/*" -x'!Backup'
+mkdir -p "$BACKUP_DIR2"
+7za a "$BACKUP_DIR2/$BACKUP_NAME" "$SAVE_DIR/$SAVE/*" -x'!Backup'
