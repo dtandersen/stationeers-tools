@@ -13,4 +13,4 @@ BACKUP_DIR2="$BACKUP_DIR/$SAVE"
 DTE=`date +"%Y%m%d-%H%M"`
 BACKUP_NAME="$SAVE-$DTE.zip"
 mkdir -p "$BACKUP_DIR2"
-7za a "$BACKUP_DIR2/$BACKUP_NAME" "$SAVE_DIR/$SAVE/*" -x'!Backup'
+nice -n 19 7za a "$BACKUP_DIR2/$BACKUP_NAME" "$SAVE_DIR/$SAVE/*" -x'!Backup'
