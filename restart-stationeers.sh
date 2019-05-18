@@ -15,6 +15,6 @@ srcon -c /home/centos/.srcon notice "The world will restart in $SAVEDELAY second
 sleep $SAVEDELAY
 stop-stationeers.sh
 stationeers-map-trimmer -m /efs/stationeers/saves/$SAVE/world.bin -x=0 -y=0 --radius=250
-cp /efs/stationeers/saves/$SAVE/world.bin /efs/stationeers/saves/$SAVE/world.bin.bak
+rm -f /efs/stationeers/saves/$SAVE/world.bin
 mv /efs/stationeers/saves/$SAVE/world.bin.trimmed /efs/stationeers/saves/$SAVE/world.bin
 start-stationeers.sh
