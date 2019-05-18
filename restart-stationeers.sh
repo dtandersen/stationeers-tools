@@ -13,4 +13,8 @@ srcon -c /home/centos/.srcon notice "Saving world..."
 srcon -c /home/centos/.srcon save $SAVE
 srcon -c /home/centos/.srcon notice "The world will restart in $SAVEDELAY seconds"
 sleep $SAVEDELAY
-/usr/local/bin/start-stationeers.sh
+stop-stationeers.sh
+stationeers-map-trimmer -m /efs/stationeers/saves/$SAVE/world.bin -x=0 -y=0 --radius=250
+cp /efs/stationeers/saves/$SAVE/world.bin /efs/stationeers/saves/$SAVE/world.bin.bak
+mv /efs/stationeers/saves/$SAVE/world.bin.trimmed /efs/stationeers/saves/$SAVE/world.bin
+start-stationeers.sh
